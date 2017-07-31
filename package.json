@@ -1,0 +1,37 @@
+{
+  "name": "reactchartingsamples",
+  "version": "1.0.0",
+  "description": "Charting Samples for React using ReCharts and Vega",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
+  },
+  "author": "Charuka Karunanayake",
+  "license": "ISC",
+  "dependencies": {
+    "d3-geo": "^1.6.4",
+    "express": "^4.15.3",
+    "json-loader": "^0.5.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-vega": "^3.1.1",
+    "recharts": "^1.0.0-alpha.2",
+    "topojson-client": "^3.0.0",
+    "vega": "^3.0.0-rc3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^3.3.0"
+  }
+}

@@ -1,0 +1,56 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    "width": 450,
+    "height": 150,
+    "padding":5,
+
+    "data": [
+        {
+            "name": "bardata"
+        }
+    ],
+    "scales": [
+        {
+            "name": "xscale",
+            "type": "linear",
+            "range":"width",
+            "zero":false,
+            "domain":{"data": "bardata","field":"category"}
+        },
+        {
+            "name": "yscale",
+            "range":"height",
+            "nice":true,
+            "zero":true,
+            "domain":{
+                "data": "bardata","field":"amount"
+            }
+        }
+    ],
+    "axes": [
+        {"orient": "bottom","scale": "xscale","tickCount":20},
+        {"orient": "left","scale": "yscale"}  
+    ],
+    "marks": [
+        {
+            "type": "area",
+            "from": {
+                "data": "bardata"
+            },
+            "encode":{
+                "enter":{
+                    "x":{"scale":"xscale","field":"category"},
+                    "y":{"scale":"yscale","field":"amount"},
+                    "y2":{"scale":"yscale","value": 0},
+                    "fill":{"value":"steelblue"}
+                },
+                "update":{
+                    "fillOpacity":{"value": 1}
+                },
+                "hover":{
+                    "fillOpacity":{"value": 0.5}
+                }
+            }
+        }
+    ]
+}
