@@ -20,12 +20,16 @@ class App extends React.Component{
 
   componentDidMount(){
     setInterval(()=>{
+      if(this.state.cities.length>20){
+        this.state.cities.shift();
+      }
+
       this.setState({
         cities:this.state.cities.concat([
           {
             name:`random ${this.state.cities.length+1}`,
             coordinates:[(Math.random()*361-180),(Math.random()*181-90)],
-            population:[(Math.random()*100000).toFixed(0)]
+            population:(Math.random()*1000).toFixed(0)
           }
         ])
       });
@@ -42,14 +46,14 @@ class App extends React.Component{
       <div>
         <h1 className='text-center'>React Charting Samples</h1>
         <div className='container'>
-          <div className='row'>
+          {/* <div className='row'>
             <div className='col-md-6'><ReChartSamples /></div>
             <div className='col-md-6'><ReactVegaSamples /></div>
-          </div>
+          </div> */}
           <div>
-            <Row title='World Map Sample'>
-              <WorldMap width={800} height={450} markers={this.state.cities} />
-            </Row>
+            {/* <Row title='World Map Sample'> */}
+            <WorldMap width={800} height={450} markers={this.state.cities} />
+            {/* </Row> */}
           </div>
         </div> 
 
