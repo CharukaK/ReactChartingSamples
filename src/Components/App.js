@@ -3,7 +3,7 @@ import React from 'react';
 // import ReChartSamples from './recharts/ReChartsSamples';
 import ReactVegaSamples from './reactVega/ReactVegaSamples';
 import ReChartSamples from './recharts/ReChartsSamples';
-import WorldMap from './worldmap/WorldMap';
+import WorldMap,{Markers} from './worldmap/WorldMap';
 import Row from './RowComp';
 
 class App extends React.Component{
@@ -12,7 +12,7 @@ class App extends React.Component{
     super(props);
     this.state={
       cities: [
-        { name: 'country 1', coordinates: [139.6917,35.6895], population: 3784 },
+        { name: 'country 1', coordinates: [139.6917,35.6895], value: 3784 },
       ]
     };
   }
@@ -29,7 +29,7 @@ class App extends React.Component{
           {
             name:`random ${this.state.cities.length+1}`,
             coordinates:[(Math.random()*361-180),(Math.random()*181-90)],
-            population:(Math.random()*1000).toFixed(0)
+            value:(Math.random()*1000).toFixed(0)
           }
         ])
       });
@@ -49,10 +49,15 @@ class App extends React.Component{
           {/* <div className='row'>
             <div className='col-md-6'><ReChartSamples /></div>
             <div className='col-md-6'><ReactVegaSamples /></div>
-          </div> */}
+          </div>  */}
           <div>
             {/* <Row title='World Map Sample'> */}
-            <WorldMap width={800} height={450} markers={this.state.cities} />
+            <WorldMap 
+              width={800} 
+              height={450} 
+              markers={this.state.cities} 
+              markFill={'#79a0e0'} 
+              markStroke={'#ffffff'} />
             {/* </Row> */}
           </div>
         </div> 
