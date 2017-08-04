@@ -6,6 +6,7 @@ import ReChartSamples from './recharts/ReChartsSamples';
 import WorldMap,{Markers} from './worldmap/WorldMap';
 import Gadget from './gadget-component/Gadget';
 import Row from './RowComp';
+import ComplexGadget from './ComplexGadget/ComplexGadget';
 
 class App extends React.Component{
 
@@ -110,7 +111,12 @@ class App extends React.Component{
               <Gadget data={this.brushData}/>
             </Row>
             
-          </div>  
+          </div>
+          <div>
+            <Row title='Compound Gadget'>
+              <ComplexGadget/>
+            </Row>
+          </div>    
         </div> 
 
         {/* <ReactVegaSamples /> */}

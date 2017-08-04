@@ -101,15 +101,15 @@ class WorldMap extends React.Component{
                 key={`path-${i}`}
                 d={geoPath().projection(this.projection())(d)}
                 className='country'
-                fill={`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`}
+                fill='#667063'
                 stroke='#ffffff'
                 strokeWidth={0.5}
 
-                // onClick={()=>{this.handleCountryClick(i);}}
+                // onClick={()=>{this.handleCountryClick(i);}}  {`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`}
                 onMouseOver={(evt)=>this.handleCountryMouseOver(evt)}
                 onMouseLeave={(evt)=>this.handleCountryMouseExit(evt)}
                 onMouseDown={(evt)=>this.handleAreaMouseDown(evt)}
-                onMouseUp={(evt)=>this.handleAreaMouseUp(evt,`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`)}
+                onMouseUp={(evt)=>this.handleAreaMouseUp(evt,'#667063')}
               />
             ))
           }
@@ -130,7 +130,7 @@ class WorldMap extends React.Component{
                 key={`marker-${i}`}
                 cx={this.projection()(location.coordinates)[0]}
                 cy={this.projection()(location.coordinates)[1]}
-                r={(location.value/100).toFixed(0)}
+                r={(location.value/10).toFixed(0)}
                 fill={this.props.markFill}
                 stroke={this.props.markStroke}
                 className='marker'
