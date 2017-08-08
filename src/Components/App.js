@@ -57,28 +57,28 @@ class App extends React.Component{
     super(props);
     this.state={
       cities: [
-        { name: 'country 1', coordinates: [139.6917,35.6895], value: 3784 },
+        { name: 'country 1', coordinates: [139.6917,35.6895], value: 120 },
       ]
     };
   }
   
 
   componentDidMount(){
-    setInterval(()=>{
-      if(this.state.cities.length>20){
-        this.state.cities.shift();
-      }
+    // setInterval(()=>{
+    //   if(this.state.cities.length>20){
+    //     this.state.cities.shift();
+    //   }
 
-      this.setState({
-        cities:this.state.cities.concat([
-          {
-            name:`random ${this.state.cities.length+1}`,
-            coordinates:[(Math.random()*361-180),(Math.random()*181-90)],
-            value:(Math.random()*1000).toFixed(0)
-          }
-        ])
-      });
-    },2000);
+    //   this.setState({
+    //     cities:this.state.cities.concat([
+    //       {
+    //         name:`random ${this.state.cities.length+1}`,
+    //         coordinates:[(Math.random()*361-180),(Math.random()*181-90)],
+    //         value:(Math.random()*100).toFixed(0)
+    //       }
+    //     ])
+    //   });
+    // },2000);
 
   }
 
@@ -97,12 +97,14 @@ class App extends React.Component{
           </div>
           <div>
             {/* <Row title='World Map Sample'> */}
-            <WorldMap 
-              width={800} 
-              height={450} 
-              markers={this.state.cities} 
-              markFill={'#79a0e0'} 
-              markStroke={'#ffffff'} />
+            <Row title='World Map Sample'>
+              <WorldMap 
+                width={800} 
+                height={450} 
+                markers={this.state.cities} 
+                markFill={'#79a0e0'} 
+                markStroke={'#ffffff'} />
+            </Row>
             {/* </Row> */}
           </div>
           <div>

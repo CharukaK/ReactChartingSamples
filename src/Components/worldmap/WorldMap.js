@@ -2,7 +2,7 @@ import React from 'react';
 import {geoMercator,geoPath} from 'd3-geo';
 import {feature} from 'topojson-client';
 import PropTypes from 'prop-types';
-
+import ReactTooltip from 'react-tooltip';
 
 
 // import mapData from './map/110m.json';
@@ -93,29 +93,44 @@ class WorldMap extends React.Component{
   render(){
     return(
 
-      <svg width={this.props.width} height={this.props.height} viewBox={`0 0 ${this.props.width} ${this.props.height}`}>
-        <g className='countries'>
-          {
-            this.state.worldData.map((d,i)=>(
-              <path
-                key={`path-${i}`}
-                d={geoPath().projection(this.projection())(d)}
-                className='country'
-                fill='#667063'
-                stroke='#ffffff'
-                strokeWidth={0.5}
+      <div>
+        <svg width={this.props.width} height={this.props.height}>
+          <g className='countries'>
+            {
+              this.state.worldData.map((d,i)=>(
+                <path
+                  key={`path-${i}`}
+                  d={geoPath().projection(this.projection())(d)}
+                  className='country'
+                  fill={`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`}
+                  stroke='#ffffff'
+                  strokeWidth={0.5}
 
-                // onClick={()=>{this.handleCountryClick(i);}}  {`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`}
-                onMouseOver={(evt)=>this.handleCountryMouseOver(evt)}
-                onMouseLeave={(evt)=>this.handleCountryMouseExit(evt)}
-                onMouseDown={(evt)=>this.handleAreaMouseDown(evt)}
-                onMouseUp={(evt)=>this.handleAreaMouseUp(evt,'#667063')}
-              />
-            ))
-          }
-        </g>
-        <g className='markers'>
-          {/* <circle
+                  // onClick={()=>{this.handleCountryClick(i);}}  {`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`} '#667063'
+                  onMouseOver={(evt)=>this.handleCountryMouseOver(evt)}
+                  onMouseLeave={(evt)=>this.handleCountryMouseExit(evt)}
+                  onMouseDown={(evt)=>this.handleAreaMouseDown(evt)}
+                  onMouseUp={(evt)=>this.handleAreaMouseUp(evt,`rgba(38,50,56,${(1 / this.state.worldData.length * i)})`)}
+                />
+              ))
+            }
+
+
+          </g>
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor='rgb(255,255,255)' stopOpacity={1} />
+              <stop offset="100%" stopColor='rgb(rgba(38,50,56)' stopOpacity={1} />
+            </linearGradient>
+          </defs>
+          <g className='legend'>
+
+            <text x='10' y='300'>Map legend</text>
+            <rect x='10' y='315' fill='url(#grad1)' height='15' width='200'></rect>
+          </g>
+
+          <g className='markers'>
+            {/* <circle
             cx={this.projection()([8,48])[0]}
             cy={this.projection()([8,48])[1]}
             r={10}
@@ -123,22 +138,25 @@ class WorldMap extends React.Component{
             className='marker'
           /> */}
 
-          {
+            {
 
-            this.props.markers.map((location,i)=>(
-              <circle
-                key={`marker-${i}`}
-                cx={this.projection()(location.coordinates)[0]}
-                cy={this.projection()(location.coordinates)[1]}
-                r={(location.value/10).toFixed(0)}
-                fill={this.props.markFill}
-                stroke={this.props.markStroke}
-                className='marker'
-                onClick={()=>{this.handleMarkClick(i);}} />
-            ))
-          }
-        </g>
-      </svg>
+              this.props.markers.map((location,i)=>(
+                <circle
+                  data-tip="marker"
+                  key={`marker-${i}`}
+                  cx={this.projection()(location.coordinates)[0]}
+                  cy={this.projection()(location.coordinates)[1]}
+                  r={(location.value/10).toFixed(0)}
+                  fill={this.props.markFill}
+                  stroke={this.props.markStroke}
+                  className='marker'
+                  onClick={()=>{this.handleMarkClick(i);}} />
+              ))
+            }
+          </g>
+        </svg>
+        <ReactTooltip />
+      </div>
     );
   }
 
