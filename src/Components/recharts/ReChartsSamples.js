@@ -209,7 +209,7 @@ class ReChartsSamples extends React.Component {
           </Row>
 
           <Row title='Brush with Chart example'>
-            <BarChart width={600} height={300} data={this.brushData}
+            <BarChart width={500} height={200} data={this.brushData}
               margin={{top: 5, right: 30, left: 20, bottom: 5}}>
               <XAxis dataKey="name"/>
               <YAxis/>
@@ -224,7 +224,7 @@ class ReChartsSamples extends React.Component {
           </Row>
 
           <Row title="Drill Down Bar Chart">
-            <BarChart width={800} height={600}
+            <BarChart width={500} height={200}
               data={this.dataset === 1 ? this.series : this.drillDown['Microsoft Internet Explorer']}
               margin={{top: 5, right: 30, left: 20, bottom: 5}}>
               <XAxis dataKey="name"/>
@@ -232,7 +232,7 @@ class ReChartsSamples extends React.Component {
               <CartesianGrid strokeDasharray="3 3"/>
               <Tooltip/>
               <Legend/>
-              <Bar dataKey="y" fill="#8884d8"/>
+              <Bar dataKey="y" fill="#8884d8" onClick={this.handleDrillDownClick}/>
 
             </BarChart>
           </Row>
